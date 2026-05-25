@@ -20,7 +20,7 @@ public class ConsoleUI {
     }
 
     public void showCompanyStatus(Company company) {
-        System.out.println("\n COMPANY STATUS");
+        System.out.println("\n══════════ COMPANY STATUS ══════════");
         System.out.printf("    Name:  %s%n", company.getName());
         System.out.printf("    Cash:  %.2f%n", company.getCash());
         System.out.printf("    Value: %.2f / %.0f%n", company.calculateCompanyValue(), Company.getTargetValue());
@@ -34,19 +34,20 @@ public class ConsoleUI {
         }
 
         if (!company.getProjects().isEmpty()) {
-            System.out.println("    Projects:");
+            System.out.println("    Projects: ");
             for (Project p : company.getProjects()) {
                 String bonusInfo = p.isBonusClaimed() ? "" : " (Bonus: +" + p.getCashBonus() + ")";
-                System.out.printf("      • %-20s | %3d/%d (%s)%s%n",
+                System.out.printf("      • %-20s | Progress: %3d/%d | %s%s%n",
                         p.getName(), p.getProgress(), p.getRequiredWork(), p.getStatus(), bonusInfo);
             }
         }
 
         if (!company.getEmployees().isEmpty()) {
-            System.out.println("    Team:");
+            System.out.println("    Team: ");
             for (Employee e : company.getEmployees()) {
-                System.out.printf("      - %-15s | Skill: %d | Salary: %.0f%n",
-                        e.getName(), e.getSkill(), e.getSalary());
+                String role = e.getClass().getSimpleName();
+                System.out.printf("      - %-15s | %-10s | Skill: %2d | Work/Turn: %2d | Salary: %.0f%n",
+                        e.getName(), role, e.getSkill(), e.work(), e.getSalary());
             }
         }
         System.out.println("═══════════════════════════════════\n");
