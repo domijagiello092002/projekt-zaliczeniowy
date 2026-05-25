@@ -13,8 +13,6 @@ public class EquipmentFailureEvent implements GameEvent {
             System.out.println(" Equipment failure! Repair cost: -" + REPAIR_COST + " cash.");
         } catch (IllegalStateException e) {
             System.out.println(" Equipment failure! Insufficient funds. Debt incurred (-" + REPAIR_COST + ").");
-            // Jeśli chcesz pozwolić na ujemne saldo (bankructwo), możesz dodać w Company:
-            // company.setCash(company.getCash() - REPAIR_COST);
         }
     }
 }

@@ -7,7 +7,6 @@ public class Developer extends Employee {
 
     @Override
     public int work() {
-        // ZMIANA: Dokończono urwaną metodę. Developer pracuje 2x szybciej niż bazowy skill
         return skill * 2;
     }
 }

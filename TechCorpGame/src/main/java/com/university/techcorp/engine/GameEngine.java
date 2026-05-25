@@ -43,7 +43,7 @@ public class GameEngine {
             }
 
             if (running) {
-                turn++; //  Przesunięte przed ocenę wyniku
+                turn++; 
                 processRandomEvent();
                 evaluateGameResult();
             }

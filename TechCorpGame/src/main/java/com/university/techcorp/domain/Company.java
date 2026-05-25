@@ -37,8 +37,6 @@ public class Company {
         cash += amount;
     }
 
-    // ZMIANA: Zostawiłem sygnaturę z 'int skill', aby nie psuć istniejących wywołań,
-    // ale wewnątrz używamy employee.getSkill() do logiki, a parametr 'skill' do kosztu rekrutacji.
     public boolean hireEmployee(Employee employee, int skill) {
         if (employee == null) throw new IllegalArgumentException("Employee cannot be null.");
         int recruitmentCost = 1000 + (skill * 500);
@@ -80,8 +78,6 @@ public class Company {
         for (Employee e : employees) {
             totalSalaries += e.getSalary() * 0.5;
         }
-        // ZMIANA: Bezpośrednie odejmowanie dla pensji, aby allowować ujemne cash -> isBankrupt() to wyłapie
-        // (gdyby użyć reduceCash(), rzuciłby wyjątek i gra by się zatrzymała przed sprawdzeniem bankructwa)
         cash -= totalSalaries;
         System.out.println("Salaries paid (50% rate): " + totalSalaries + " cash.");
         return totalSalaries;
@@ -106,7 +102,6 @@ public class Company {
         return cash + projectValue;
     }
 
-    // ZMIANA: Dodano metodę showStatus() zgodnie z wytycznymi
     public void showStatus() {
         System.out.println("\n===  " + name + " Status ===");
         System.out.printf("Cash: $%.2f%n", cash);
@@ -126,7 +121,6 @@ public class Company {
     // Gettery
     public String getName() { return name; }
     public double getCash() { return cash; }
-    // Zwracamy kopię listy, aby zapobiec modyfikacjom z zewnątrz (best practice)
     public List<Employee> getEmployees() { return new ArrayList<>(employees); }
     public List<Project> getProjects() { return new ArrayList<>(projects); }
     public static double getTargetValue() { return TARGET_VALUE; }

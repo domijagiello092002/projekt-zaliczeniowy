@@ -159,7 +159,6 @@ public class ConsoleUI {
         }
         Project selectedProj = company.getProjects().get(projChoice - 1);
 
-        // ZMIANA: Pre-warunek zgodny z Project.addEmployee()
         if (selectedProj.getStatus() != ProjectStatus.PLANNED) {
             showMessage("   Cannot assign employees to a project that is already " + selectedProj.getStatus() + ".");
             return;

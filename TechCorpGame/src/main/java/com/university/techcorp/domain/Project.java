@@ -39,14 +39,12 @@ public class Project {
 
     public void addEmployee(Employee employee) {
         if (employee == null) throw new IllegalArgumentException("Employee cannot be null.");
-        // ZMIANA: Bezpieczeństwo – nie pozwalamy dodawać osób po rozpoczęciu projektu
         if (status != ProjectStatus.PLANNED) {
             throw new IllegalStateException("Cannot modify team after project has started.");
         }
         team.add(employee);
     }
 
-    // ZMIANA: start() rzuca IllegalStateException, jeśli stan != PLANNED (zgodnie z wymaganiami)
     public void start() {
         if (status != ProjectStatus.PLANNED) {
             throw new IllegalStateException("Project can only be started from PLANNED state. Current: " + status);

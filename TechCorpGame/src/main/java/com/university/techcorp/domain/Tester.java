@@ -7,7 +7,6 @@ public class Tester extends Employee {
 
     @Override
     public int work() {
-        // Tester pracuje zgodnie z bazowym skillem
         return skill;
     }
 }
