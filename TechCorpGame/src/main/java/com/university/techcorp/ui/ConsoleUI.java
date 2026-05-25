@@ -94,7 +94,7 @@ public class ConsoleUI {
             return null;
         }
 
-        int salary = 2000 + (skill * 1000);
+        int salary = 1000 + (skill * 300);
         int recruitmentCost = 1000 + (skill * 500);
         System.out.printf("   Expected Salary: %d/turn (50%% charged) | Recruitment: %d cash%n", salary, recruitmentCost);
         return new HireRequest(roleChoice, name, skill, salary);
@@ -114,7 +114,7 @@ public class ConsoleUI {
 
             int requiredWork = 20 + (int)(Math.random() * 61);
             int setupCost = 2000 + (requiredWork * 50);
-            int cashBonus = requiredWork * 250;
+            int cashBonus = requiredWork * 600;
             options[i] = new Project(name, requiredWork, setupCost, cashBonus);
             System.out.printf("  %d. %-20s | Work: %3d | Setup: %5d | Bonus: %5d%n",
                     i + 1, name, requiredWork, setupCost, cashBonus);

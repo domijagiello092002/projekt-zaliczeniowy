@@ -16,7 +16,7 @@ public class Main {
         // 2. Rekrutujemy pracowników (tworzymy obiekty RAZ!)
         Developer anna = new Developer("Anna", 8, 7000);
         Tester piotr = new Tester("Piotr", 6, 6000);
-        Manager ewa = new Manager("Ewa", 7, 9000); // Zgodnie z wytycznymi
+        Manager ewa = new Manager("Ewa", 7, 9000); 
 
         // 3. Zatrudniamy ich w firmie
         company.hireEmployee(anna, anna.getSkill());
@@ -24,13 +24,13 @@ public class Main {
         company.hireEmployee(ewa, ewa.getSkill());
 
         // 4. Tworzymy projekt i przypisujemy TYCH SAMYCH pracowników
-        Project mobileApp = new Project("Mobile App", 100, 5000, 15000);
+        Project mobileApp = new Project("Mobile App", 50, 5000, 20000);
         mobileApp.addEmployee(anna);
         mobileApp.addEmployee(piotr);
         company.addProject(mobileApp);
 
         // 5. Drugi projekt (WEBSITE) + Manager
-        Project website = new Project("Company Website", 60, 3000, 8000);
+        Project website = new Project("Company Website", 40, 3000, 16000);
         website.addEmployee(ewa);
         company.addProject(website);
 

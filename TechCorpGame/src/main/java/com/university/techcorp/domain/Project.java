@@ -67,7 +67,6 @@ public class Project {
     }
 
     public void workOneTurn() {
-        // Praca odbywa się tylko w stanie IN_PROGRESS
         if (status != ProjectStatus.IN_PROGRESS) return;
 
         for (Employee e : team) {
@@ -90,11 +89,9 @@ public class Project {
     public int getSetupCost() { return setupCost; }
     public ProjectStatus getStatus() { return status; }
 
-    // ZMIANA: Dodano getTeam() zwracający niemodyfikowalną kopię (best practice OOP)
     public List<Employee> getTeam() { return Collections.unmodifiableList(team); }
 
     public int getCompletionPercentage() {
-        // ZMIANA: Naprawiono urwany warunek z kopiowania
         if (requiredWork == 0) return 0;
         return (progress * 100) / requiredWork;
     }
