@@ -7,6 +7,8 @@ import com.university.techcorp.domain.ProjectStatus;
 import java.util.Scanner;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.List;   //dodane     
+import java.util.ArrayList; //dodane
 
 public class ConsoleUI {
     private final Scanner scanner = new Scanner(System.in);
@@ -36,7 +38,7 @@ public class ConsoleUI {
         if (!company.getProjects().isEmpty()) {
             System.out.println("    Projects: ");
             for (Project p : company.getProjects()) {
-                String bonusInfo = p.isBonusClaimed() ? "" : " (Bonus: +" + p.getCashBonus() + ")";
+                String bonusInfo = p.isBonusClaimed() ? " " : " (Bonus: +" + p.getCashBonus() + ")";
                 System.out.printf("      • %-20s | Progress: %3d/%d | %s%s%n",
                         p.getName(), p.getProgress(), p.getRequiredWork(), p.getStatus(), bonusInfo);
             }
@@ -45,9 +47,17 @@ public class ConsoleUI {
         if (!company.getEmployees().isEmpty()) {
             System.out.println("    Team: ");
             for (Employee e : company.getEmployees()) {
+                List<String> assignedProjects = new ArrayList<>();
+                for (Project p : company.getProjects()) {
+                    if (p.getTeam().contains(e)) {
+                        assignedProjects.add(p.getName());
+                    }
+                }
+                String projectsInfo = assignedProjects.isEmpty() ? "Brak" : String.join(", ", assignedProjects);
+
                 String role = e.getClass().getSimpleName();
-                System.out.printf("      - %-15s | %-10s | Skill: %2d | Work/Turn: %2d | Salary: %.0f%n",
-                        e.getName(), role, e.getSkill(), e.work(), e.getSalary());
+                System.out.printf("      - %-15s | %-10s | Skill: %2d | Work/Turn: %2d | Salary: %.0f | Projects: %s%n",
+                        e.getName(), role, e.getSkill(), e.work(), e.getSalary(), projectsInfo);
             }
         }
         System.out.println("═══════════════════════════════════\n");
