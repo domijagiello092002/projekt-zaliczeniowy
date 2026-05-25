@@ -39,9 +39,15 @@ public class Project {
 
     public void addEmployee(Employee employee) {
         if (employee == null) throw new IllegalArgumentException("Employee cannot be null.");
-        if (status != ProjectStatus.PLANNED) {
-            throw new IllegalStateException("Cannot modify team after project has started.");
+    
+        if (team.contains(employee)) {
+            throw new IllegalStateException("Pracownik jest już przypisany do tego projektu.");
         }
+
+        if (status == ProjectStatus.FINISHED || status == ProjectStatus.CANCELLED) {
+            throw new IllegalStateException("Nie można modyfikować zespołu po zakończeniu lub anulowaniu projektu.");
+        }
+    
         team.add(employee);
     }
 

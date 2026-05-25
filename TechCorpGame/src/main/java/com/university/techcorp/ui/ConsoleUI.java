@@ -127,39 +127,39 @@ public class ConsoleUI {
     }
 
     public void promptAssignEmployeeToProject(Company company) {
-        System.out.println("\n---  Assign Employee to Project ---");
+        System.out.println("\n--- Assign Employee to Project ---");
         if (company.getEmployees().isEmpty()) {
-            showMessage("   No employees available."); return;
+        showMessage("   No employees available."); return;
         }
         if (company.getProjects().isEmpty()) {
             showMessage("   No projects available."); return;
         }
 
-        System.out.println("   Employees:");
+        System.out.println("   Employees: ");
         for (int i = 0; i < company.getEmployees().size(); i++) {
             Employee e = company.getEmployees().get(i);
             System.out.printf("    %d. %-15s (Skill: %d)%n", i + 1, e.getName(), e.getSkill());
         }
-        System.out.print("  ▶ Select employee: ");
+        System.out.print("  ▶ Select employee:  ");
         int empChoice = readChoice();
         if (empChoice < 1 || empChoice > company.getEmployees().size()) {
             showMessage("   Invalid selection."); return;
         }
         Employee selectedEmp = company.getEmployees().get(empChoice - 1);
 
-        System.out.println("   Projects:");
+        System.out.println("   Projects: ");
         for (int i = 0; i < company.getProjects().size(); i++) {
             Project p = company.getProjects().get(i);
             System.out.printf("    %d. %-20s [%s]%n", i + 1, p.getName(), p.getStatus());
         }
-        System.out.print("  ▶ Select project: ");
+        System.out.print("  ▶ Select project:  ");
         int projChoice = readChoice();
         if (projChoice < 1 || projChoice > company.getProjects().size()) {
             showMessage("   Invalid selection."); return;
         }
         Project selectedProj = company.getProjects().get(projChoice - 1);
 
-        if (selectedProj.getStatus() != ProjectStatus.PLANNED) {
+        if (selectedProj.getStatus() == ProjectStatus.FINISHED || selectedProj.getStatus() == ProjectStatus.CANCELLED) {
             showMessage("   Cannot assign employees to a project that is already " + selectedProj.getStatus() + ".");
             return;
         }
