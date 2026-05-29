@@ -72,12 +72,20 @@ public class Project {
         status = ProjectStatus.IN_PROGRESS;
     }
 
-    public void workOneTurn() {
+    public void workOneTurn(Company company) {
         if (status != ProjectStatus.IN_PROGRESS) return;
 
         for (Employee e : team) {
-            progress += e.work();
+            int assignedCount = 0;
+            for (Project p : company.getProjects()) {
+                if (p.getStatus() == ProjectStatus.IN_PROGRESS && p.getTeam().contains(e)) {
+                    assignedCount++;
+                }
+            }
+            int workContribution = e.work() / Math.max(1, assignedCount);
+            progress += workContribution;
         }
+    
         if (progress >= requiredWork) {
             progress = requiredWork;
             status = ProjectStatus.FINISHED;

@@ -50,14 +50,14 @@ public class ConsoleUI {
                 List<String> assignedProjects = new ArrayList<>();
                 for (Project p : company.getProjects()) {
                     if (p.getTeam().contains(e)) {
-                        assignedProjects.add(p.getName());
+                    assignedProjects.add(p.getName());
                     }
                 }
                 String projectsInfo = assignedProjects.isEmpty() ? "Brak" : String.join(", ", assignedProjects);
-
+    
                 String role = e.getClass().getSimpleName();
-                System.out.printf("      - %-15s | %-10s | Skill: %2d | Work/Turn: %2d | Salary: %.0f | Projects: %s%n",
-                        e.getName(), role, e.getSkill(), e.work(), e.getSalary(), projectsInfo);
+                System.out.printf("  - %-15s | %-10s | Skill: %2d | Work/Turn: %2d | Salary: %.0f | Projects: %s%n",
+                    e.getName(), role, e.getSkill(), e.work(), e.getSalary(), projectsInfo);
             }
         }
         System.out.println("═══════════════════════════════════\n");
