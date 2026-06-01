@@ -55,7 +55,7 @@ public class GameEngine {
         boolean anyWorked = false;
         for (Project p : company.getProjects()) {
             if (p.getStatus() == ProjectStatus.IN_PROGRESS) {
-                p.workOneTurn(company);  // ✅ PRZEKAZUJEMY company
+                p.workOneTurn(company); 
                 anyWorked = true;
             }
         }
